@@ -15,10 +15,18 @@ export default function App() {
     handleToggle();
   }
 
+  function handleToggleStatus(id) {
+    setTodolists((items) =>
+      items.map((item) =>
+        item.id === id ? { ...item, completed: !item.completed } : item
+      )
+    );
+  }
+
   return (
     <div>
-      <TodoList items={todolists} />
-      <button onClick={handleToggle}>Add todo</button>
+      <TodoList items={todolists} onToggleStatus={handleToggleStatus} />
+      <button onClick={handleToggle}>Add Item</button>
       {showModal && <Modal onToggle={handleToggle} onAddItem={handleAddItem} />}
     </div>
   );
@@ -35,12 +43,17 @@ function Modal({ onToggle, onAddItem }) {
   );
 }
 
-function TodoList({ items }) {
+function TodoList({ items, onToggleStatus }) {
   return (
     <ul>
       {items.map((item) => (
         <li className={item.completed ? "completed" : ""} key={item.id}>
           {item.content}
+          <input
+            type="checkbox"
+            checked={item.completed}
+            onChange={(e) => onToggleStatus(item.id)}
+          />
         </li>
       ))}
     </ul>
@@ -56,7 +69,7 @@ function ModalForm({ onAddItem }) {
     if (!content) return;
 
     const newItem = {
-      id: crypto.randomUUID,
+      id: crypto.randomUUID(),
       content: content,
       status: false,
     };
