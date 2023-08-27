@@ -29,6 +29,10 @@ export default function App() {
     setTodolists((items) => items.filter((item) => item.id !== id));
   }
 
+  function handleDeleteAllItems() {
+    setTodolists([]);
+  }
+
   return (
     <div>
       <TodoList
@@ -37,6 +41,7 @@ export default function App() {
         onDeleteItem={handleDeleteItem}
       />
       <button onClick={handleToggle}>Add Item</button>
+      <button onClick={handleDeleteAllItems}>Clear All</button>
       {showModal && <Modal onToggle={handleToggle} onAddItem={handleAddItem} />}
     </div>
   );
