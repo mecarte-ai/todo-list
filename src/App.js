@@ -32,7 +32,9 @@ function TodoList({ items }) {
   return (
     <ul>
       {items.map((item) => (
-        <li>{item.content}</li>
+        <li className={item.completed ? "completed" : ""} key={item.id}>
+          {item.content}
+        </li>
       ))}
     </ul>
   );

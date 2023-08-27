@@ -33,3 +33,7 @@
 
   z-index: 99999;
 }
+
+.completed {
+  text-decoration: line-through;
+}
