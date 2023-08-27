@@ -23,9 +23,17 @@ export default function App() {
     );
   }
 
+  function handleDeleteItem(id) {
+    setTodolists((items) => items.filter((item) => item.id !== id));
+  }
+
   return (
     <div>
-      <TodoList items={todolists} onToggleStatus={handleToggleStatus} />
+      <TodoList
+        items={todolists}
+        onToggleStatus={handleToggleStatus}
+        onDeleteItem={handleDeleteItem}
+      />
       <button onClick={handleToggle}>Add Item</button>
       {showModal && <Modal onToggle={handleToggle} onAddItem={handleAddItem} />}
     </div>
@@ -43,7 +51,7 @@ function Modal({ onToggle, onAddItem }) {
   );
 }
 
-function TodoList({ items, onToggleStatus }) {
+function TodoList({ items, onToggleStatus, onDeleteItem }) {
   return (
     <ul>
       {items.map((item) => (
@@ -54,6 +62,7 @@ function TodoList({ items, onToggleStatus }) {
             checked={item.completed}
             onChange={(e) => onToggleStatus(item.id)}
           />
+          <button onClick={() => onDeleteItem(item.id)}>&times;</button>
         </li>
       ))}
     </ul>
