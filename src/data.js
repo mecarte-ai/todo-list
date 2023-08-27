@@ -2,17 +2,17 @@ const todos = [
   {
     id: 1,
     content: "Learn React",
-    status: "Completed",
+    completed: true,
   },
   {
     id: 2,
     content: "Create React Projects",
-    status: "Not completed",
+    completed: false,
   },
   {
     id: 3,
     content: "Add Projects to Portfolio",
-    status: "Not completed",
+    completed: false,
   },
 ];
 
