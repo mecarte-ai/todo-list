@@ -38,3 +38,8 @@
   display: flex;
   gap: 10px;
 }
+
+.items {
+  list-style-type: none;
+  padding: 0;
+}

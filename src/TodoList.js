@@ -1,15 +1,15 @@
 export function TodoList({ items, onToggleStatus, onDeleteItem }) {
   return (
-    <ul>
+    <ul className="items">
       {items.map((item) => (
         <li className={item.completed ? "completed" : ""} key={item.id}>
+          <button onClick={() => onDeleteItem(item.id)}>&times;</button>
           {item.content}
           <input
             type="checkbox"
             checked={item.completed}
             onChange={(e) => onToggleStatus(item.id)}
           />
-          <button onClick={() => onDeleteItem(item.id)}>&times;</button>
         </li>
       ))}
     </ul>
